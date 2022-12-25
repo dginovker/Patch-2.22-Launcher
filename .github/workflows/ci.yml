@@ -52,13 +52,9 @@ jobs:
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
 
-    # Print all the files in the system recursively so we can find the MSIX package
-    - name: List files in system
-      run: ls -R
-
-    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
+    # Upload Patch-2.22-Launcher\Patch-2.22-Launcher\build\Release\net6.0-windows folder
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: MSIX Package
-        path: ${{ env.Wap_Project_Path }}\bin\${{ matrix.configuration }}\${{ env.Appx_Bundle_Platforms }}\AppPackages\${{ env.Package_Name }}\${{ env.Package_Name }}.msixbundle
+        name: build
+        path: Patch-2.22-Launcher\Patch-2.22-Launcher\build\Release\net6.0-windows
