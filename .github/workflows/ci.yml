@@ -57,4 +57,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build
-        path: Patch-2.22-Launcher\Patch-2.22-Launcher\build\Release\net6.0-windows
+        path: build\Release\net6.0-windows
