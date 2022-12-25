@@ -52,9 +52,17 @@ jobs:
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
 
+    # Print all the files in the output directory
+    - name: List files in output directory
+      run: ls ${{ env.Wap_Project_Path }}\bin\${{ matrix.configuration }}\${{ env.Appx_Bundle_Platforms }}\AppPackages\${{ env.Package_Name }}
+
+    # Print all the files in the system recursively so we can find the MSIX package
+    - name: List files in system
+      run: ls -R
+
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\AppPackages
+        path: ${{ env.Wap_Project_Path }}\bin\${{ matrix.configuration }}\${{ env.Appx_Bundle_Platforms }}\AppPackages\${{ env.Package_Name }}\${{ env.Package_Name }}.msixbundle
