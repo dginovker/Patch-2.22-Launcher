@@ -96,7 +96,8 @@ jobs:
       with:
         tag_name: release-${{ github.run_number }}
         # files: PatchLauncher.zip
-        files: *
+        files: |
+          *
         fail_on_unmatched_files: true
         name: Patch Launcher Files - ${{ github.run_number }}
 
