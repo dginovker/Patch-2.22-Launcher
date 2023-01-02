@@ -27,11 +27,17 @@ namespace PatchLauncher
                 Settings.Default.Save();
             }
 
-            using Mutex mutex = new(false, Process.GetCurrentProcess().ProcessName);
-            if (!mutex.WaitOne(0, false))
-            {
-                MessageBox.Show("Launcher is already running! Please Check TrayIcon or Taskmanager first.", "Launcher already running!");
-                return;
+            try {
+              using Mutex mutex = new(false, Process.GetCurrentProcess().ProcessName);
+              if (!mutex.WaitOne(0, false))
+              {
+                  MessageBox.Show("Launcher is already running! Please Check TrayIcon or Taskmanager first.", "Launcher already running!");
+                  return;
+              }
+            } catch (Exception ex) {
+              MessageBox.Show("Error: " + ex.Message, "Error");
+              // Log the exception
+              Console.WriteLine(ex.Message);
             }
 
             if (RegistryService.ReadRegKey("path") == "ValueNotFound" || !Directory.Exists(RegistryService.ReadRegKey("path")))
