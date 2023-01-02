@@ -31,40 +31,53 @@ namespace PatchLauncher
 
         public BFME1()
         {
+            Console.WriteLine("It actually gets here");
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             #region logic
 
             InitializeComponent();
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             InitializeWebView2Settings();
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             CheckForUpdates();
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             SysTray.ContextMenuStrip = NotifyContextMenu;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             if (MD5Tools.CalculateMD5(Path.Combine(ConstStrings.C_PATCHFOLDER_NAME, ConstStrings.C_PATCHZIP30_NAME)) == "d0e155d71fb19c44ca0c9460fd99f4ca")
             {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
                 Settings.Default.IsPatch30Downloaded = false;
                 File.Delete(Path.Combine(ConstStrings.C_PATCHFOLDER_NAME, ConstStrings.C_PATCHZIP30_NAME));
             }
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             if (!Directory.Exists(ConstStrings.GameAppdataFolderPath()))
                 Directory.CreateDirectory(ConstStrings.GameAppdataFolderPath());
 
             if (!File.Exists(Path.Combine(ConstStrings.GameAppdataFolderPath(), ConstStrings.C_OPTIONSINI_FILENAME)))
                 File.Copy(Path.Combine(ConstStrings.C_TOOLFOLDER_NAME, ConstStrings.C_OPTIONSINI_FILENAME), Path.Combine(ConstStrings.GameAppdataFolderPath(), ConstStrings.C_OPTIONSINI_FILENAME));
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             XMLFileHelper.GetXMLFileData();
 
             TmrPatchNotes.Tick += new EventHandler(TmrPatchNotes_Tick);
             TmrPatchNotes.Interval = 2000;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             TmrPatchNotes.Start();
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             BtnInstall.Hide();
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             #endregion
 
             #region Styles
             //Main Form style behaviour
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             PibLoadingRing.Show();
             PibLoadingBorder.Show();
             PiBArrow.Hide();
@@ -84,6 +97,7 @@ namespace PatchLauncher
             PiBMod_3.Hide();
             PiBMod_4.Hide();
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             LblInstalledMods.Hide();
             LblInstalledPatches.Hide();
             LblModExplanation.Hide();
@@ -92,6 +106,7 @@ namespace PatchLauncher
             BtnLaunch.Enabled = false;
             BtnAdvanced.Hide();
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             // label-Styles
             LblDownloadSpeed.Text = "";
             LblDownloadSpeed.Font = FontHelper.GetFont(0, 16);;
@@ -107,6 +122,7 @@ namespace PatchLauncher
             LblBytes.Font = FontHelper.GetFont(0, 16);;
             LblBytes.ForeColor = Color.FromArgb(192, 145, 69);
             LblBytes.BackColor = Color.Transparent;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             LblPatchNotes.Text = "Loading Patch-Notes...";
             LblPatchNotes.Font = FontHelper.GetFont(0, 16);
@@ -134,6 +150,7 @@ namespace PatchLauncher
             LblModExplanation.BackColor = Color.Transparent;
             LblModExplanation.BorderStyle = BorderStyle.None;
             LblModExplanation.OutlineWidth = 6;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             PBarActualFile.ForeColor = Color.FromArgb(192, 145, 69);
             PBarActualFile.BackColor = Color.FromArgb(192, 145, 69);
@@ -153,6 +170,8 @@ namespace PatchLauncher
             BtnOptions.ForeColor = Color.FromArgb(192, 145, 69);
 
             BtnInstall.FlatAppearance.BorderSize = 0;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             BtnInstall.FlatStyle = FlatStyle.Flat;
             BtnInstall.BackColor = Color.Transparent;
             BtnInstall.BackgroundImage = ConstStrings.C_BUTTONIMAGE_NEUTR;
@@ -175,6 +194,7 @@ namespace PatchLauncher
 
             #region HUD Elements
             PibHeader.Image = Helper.Properties.Resources.header;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             PiBYoutube.Image = Helper.Properties.Resources.youtube;
             PiBDiscord.Image = Helper.Properties.Resources.discord;
             PiBModDB.Image = Helper.Properties.Resources.moddb;
@@ -191,6 +211,7 @@ namespace PatchLauncher
                 PibMute.Image = Helper.Properties.Resources.Mute;
 
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             if (Settings.Default.IsPatch106Installed)
                 PiBVersion106.Image = Helper.Properties.Resources.BtnPatchSelection_106_Selected;
             else
@@ -202,6 +223,7 @@ namespace PatchLauncher
             else
                 PiBVersion222_1.Image = Helper.Properties.Resources.BtnPatchSelection_222V26;
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             if (Settings.Default.IsPatch27Installed)
                 PiBVersion222_2.Image = Helper.Properties.Resources.BtnPatchSelection_222V27_Selected;
@@ -220,6 +242,7 @@ namespace PatchLauncher
             else
                 PiBVersion222_4.Image = Helper.Properties.Resources.BtnPatchSelection_222V29;
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
 
             if (Settings.Default.IsPatch30Installed)
                 PiBVersion222_5.Image = Helper.Properties.Resources.BtnPatchSelection_222V30_Selected;
@@ -235,6 +258,7 @@ namespace PatchLauncher
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             if (Settings.Default.BackgroundMusicIcon == 0)
             {
                 PiBThemeSwitcher.Image = Helper.Properties.Resources.icoDefault;
@@ -261,33 +285,42 @@ namespace PatchLauncher
                 BackgroundImage = Helper.Properties.Resources.bgMordor;
             }
             #endregion
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
 
         #region Launcher Auto-Updater
 
         private static async void InitializeWebView2Settings()
         {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             try
             {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
                 var version = CoreWebView2Environment.GetAvailableBrowserVersionString();
 
                 File.WriteAllText("webView2_Version.log", version);
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             }
             catch (WebView2RuntimeNotFoundException)
             {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
                 string fileName = Path.Combine(Application.StartupPath, "Tools", "MicrosoftEdgeWebview2Setup.exe");
                 await RunWebViewSilentSetupAsync(fileName);
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             }
         }
 
         public static async Task RunWebViewSilentSetupAsync(string fileName)
         {
             var p = Process.Start(fileName, new[] { "/silent", "/install" });
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             await p.WaitForExitAsync().ConfigureAwait(false);
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
 
         public static void CheckForUpdates()
         {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             AutoUpdater.Start("https://ravo92.github.io/LauncherUpdater.xml");
             AutoUpdater.InstalledVersion = Assembly.GetEntryAssembly()!.GetName().Version;
             AutoUpdater.ShowSkipButton = false;
@@ -305,6 +338,7 @@ namespace PatchLauncher
 
             string jsonPath = Path.Combine(Environment.CurrentDirectory, "AutoUpdaterSettings.json");
             AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
 
         #endregion
@@ -314,6 +348,7 @@ namespace PatchLauncher
         private void BtnLaunch_Click(object sender, EventArgs e)
         {
             Process _process = new();
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             _process.StartInfo.FileName = Path.Combine(Settings.Default.GameInstallPath, ConstStrings.C_MAIN_GAME_FILE);
 
             // Start game windowed
@@ -335,6 +370,7 @@ namespace PatchLauncher
             _process.WaitForExitAsync();
 
             _process.Exited += GameisClosed;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
 
         public void GameisClosed(object sender, EventArgs e)
@@ -353,6 +389,7 @@ namespace PatchLauncher
 
         private void BtnLaunch_MouseLeave(object sender, EventArgs e)
         {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             BtnLaunch.BackgroundImage = ConstStrings.C_BUTTONIMAGE_NEUTR;
             BtnLaunch.ForeColor = Color.FromArgb(192, 145, 69);
         }
@@ -360,6 +397,7 @@ namespace PatchLauncher
         private void BtnLaunch_MouseEnter(object sender, EventArgs e)
         {
             BtnLaunch.BackgroundImage = ConstStrings.C_BUTTONIMAGE_HOVER;
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             BtnLaunch.ForeColor = Color.FromArgb(100, 53, 5);
             Task.Run(() => SoundPlayerHelper.PlaySoundHover());
         }
@@ -383,6 +421,7 @@ namespace PatchLauncher
         }
         private void BtnOptions_MouseLeave(object sender, EventArgs e)
         {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             BtnOptions.BackgroundImage = ConstStrings.C_BUTTONIMAGE_NEUTR;
             BtnOptions.ForeColor = Color.FromArgb(192, 145, 69);
         }
@@ -434,6 +473,7 @@ namespace PatchLauncher
                 BtnLaunch.Enabled = true;
                 BtnAdvanced.Show();
             }
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
 
         private void BtnInstall_MouseLeave(object sender, EventArgs e)
@@ -522,6 +562,7 @@ namespace PatchLauncher
 
         private void PiBThemeSwitcher_Click(object sender, EventArgs e)
         {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             iconNumber++;
             if (iconNumber >= 5)
                 iconNumber = 0;
@@ -2009,6 +2050,7 @@ namespace PatchLauncher
             await _ZIPFileHelper.ExtractArchive(Path.Combine(ConstStrings.C_PATCHFOLDER_NAME, ZIPFileName), Settings.Default.GameInstallPath, progressHandler)!;
 
             FinishingGameUpdate();
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
 
         private void FinishingGameUpdate()
@@ -2038,6 +2080,7 @@ namespace PatchLauncher
             //    shortcut.TargetPath = Path.Combine(Properties.Settings.Default.GameInstallPath, @"\lotrbfme.exe");
             //    shortcut.Save();
             //}
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
 
         #endregion
@@ -2540,6 +2583,7 @@ namespace PatchLauncher
 
         private void BFME1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             if (Settings.Default.IsPatch106Installed)
             {
                 Settings.Default.SelectedOlderPatch = true;

@@ -66,6 +66,7 @@ namespace PatchLauncher
                 Settings.Default.GameInstallPath = RegistryService.ReadRegKey("path");
                 Settings.Default.Save();
             }
+              Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
             Application.Run(new BFME1());
               Console.WriteLine((new System.Diagnostics.StackFrame(0, true)).GetFileLineNumber());
         }
