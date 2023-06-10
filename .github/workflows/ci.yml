@@ -52,7 +52,6 @@ jobs:
         Appx_Bundle_Platforms: x86|x64
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
-        Wap_Project_Path: Patch2.22Launcher\PatchLauncherBFME1.csproj
 
     # Upload Patch-2.22-Launcher\Patch-2.22-Launcher\build\Release\net6.0-windows folder
     - name: Upload build artifacts
