@@ -44,13 +44,15 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     # Create the app package by building and packaging the Windows Application Packaging project
+    # Add self-contained support for the following platforms: x86|x64
     - name: Create app package
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:AppxBundlePlatforms=$env:Appx_Bundle_Platforms /p:RuntimeIdentifier=win-x86;win-x64 /p:AppxBundlePlatforms=$env:Appx_Bundle_Platforms /p:AppxBundle=Always 
       env:
         Appx_Bundle: Always
         Appx_Bundle_Platforms: x86|x64
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
+        Wap_Project_Path: Patch2.22Launcher\PatchLauncherBFME1.csproj
 
     # Upload Patch-2.22-Launcher\Patch-2.22-Launcher\build\Release\net6.0-windows folder
     - name: Upload build artifacts
