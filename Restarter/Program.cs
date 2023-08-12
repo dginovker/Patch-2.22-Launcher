@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Text;
 using Helper;
+using System.IO;
 
 namespace Restarter
 {
@@ -12,6 +13,7 @@ namespace Restarter
 
         static void Main(string[] args)
         {
+            File.AppendAllText("log.txt", "Main started" + Environment.NewLine);
             Console.WriteLine($"Main started");
             try
             {
