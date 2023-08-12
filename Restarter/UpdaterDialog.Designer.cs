@@ -34,21 +34,9 @@ namespace Restarter
         {
             File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdaterDialog));
-            SuspendLayout();
             // 
             // UpdaterDialog
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(498, 60);
-            FormBorderStyle = FormBorderStyle.None;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "UpdaterDialog";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "UpdaterDialog";
-            Shown += UpdaterDialog_Shown;
-            ResumeLayout(false);
             File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 

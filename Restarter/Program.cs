@@ -19,7 +19,6 @@ namespace Restarter
             {
                 if (_mutex.WaitOne(TimeSpan.Zero, true))
                 {
-                    File.AppendAllText("log.txt", "Running updater dialog" + Environment.NewLine);
                     Application.Run(new UpdaterDialog());
 
                     if (UpdateIsDownloaded.LauncherUpdateIsDownloaded)
