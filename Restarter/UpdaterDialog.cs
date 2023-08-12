@@ -1,6 +1,8 @@
 ﻿using Helper;
 using AutoUpdaterDotNET;
 using System.Net;
+using System.Net.Mime;
+using System.Reflection;
 
 namespace Restarter
 {
@@ -8,16 +10,17 @@ namespace Restarter
     {
         public UpdaterDialog()
         {
-            Console.WriteLine("Grabbing UpdaterDialog..");
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             InitializeComponent();
             BackgroundImage = Helper.Properties.Resources.UpdaterSplash;
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         private void UpdaterDialog_Shown(object sender, EventArgs e)
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
-                Console.WriteLine("Calling UpdaterDialog_Shown...");
                 AutoUpdater.Start("https://ravo92.github.io/LauncherUpdater_Test.xml");
                 AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
                 AutoUpdater.Synchronous = true;
@@ -29,7 +32,7 @@ namespace Restarter
                 AutoUpdater.HttpUserAgent = "BFME Patch 2.22 Launcher Updater";
                 AutoUpdater.AppTitle = "Patch 2.22 Launcher";
                 AutoUpdater.RunUpdateAsAdmin = true;
-                AutoUpdater.DownloadPath = Path.Combine(Application.StartupPath, ConstStrings.C_DOWNLOADFOLDER_NAME_LAUNCHER);
+                AutoUpdater.DownloadPath = Path.Combine(MediaTypeNames.Application.StartupPath, ConstStrings.C_DOWNLOADFOLDER_NAME_LAUNCHER);
                 AutoUpdater.ClearAppDirectory = false;
                 AutoUpdater.ReportErrors = false;
 
@@ -40,11 +43,12 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
         {
-            Console.WriteLine("AutoUpdaterOnCheckForUpdateEvent...");
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             if (args.Error == null)
             {
                 if (args.IsUpdateAvailable)
@@ -85,6 +89,7 @@ namespace Restarter
                         MessageBoxIcon.Error);
                 }
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
     }
 }
