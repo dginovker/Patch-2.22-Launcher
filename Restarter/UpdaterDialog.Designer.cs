@@ -34,9 +34,11 @@ namespace Restarter
         {
             File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdaterDialog));
+            SuspendLayout();
             // 
             // UpdaterDialog
             // 
+            ResumeLayout(false);
             File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
