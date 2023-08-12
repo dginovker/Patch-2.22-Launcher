@@ -8,7 +8,7 @@ namespace Restarter
     {
         public UpdaterDialog()
         {
-            Console.Write("Grabbing UpdaterDialog..");
+            Console.WriteLine("Grabbing UpdaterDialog..");
             InitializeComponent();
             BackgroundImage = Helper.Properties.Resources.UpdaterSplash;
         }
@@ -17,7 +17,7 @@ namespace Restarter
         {
             try
             {
-                Console.Write("Calling UpdaterDialog_Shown...");
+                Console.WriteLine("Calling UpdaterDialog_Shown...");
                 AutoUpdater.Start("https://ravo92.github.io/LauncherUpdater_Test.xml");
                 AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
                 AutoUpdater.Synchronous = true;
@@ -44,7 +44,7 @@ namespace Restarter
 
         private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
         {
-            Console.Write("AutoUpdaterOnCheckForUpdateEvent...");
+            Console.WriteLine("AutoUpdaterOnCheckForUpdateEvent...");
             if (args.Error == null)
             {
                 if (args.IsUpdateAvailable)
