@@ -12,10 +12,12 @@ namespace Restarter
 
         static void Main(string[] args)
         {
+            Console.WriteLine($"Main started");
             try
             {
                 if (_mutex.WaitOne(TimeSpan.Zero, true))
                 {
+                    Console.WriteLine($"Running updater dialog");
                     Application.Run(new UpdaterDialog());
 
                     if (UpdateIsDownloaded.LauncherUpdateIsDownloaded)
@@ -23,6 +25,7 @@ namespace Restarter
                 }
                 else
                 {
+                    Console.WriteLine($"Aborting");
                     Application.Exit();
                 }
 
@@ -105,6 +108,7 @@ namespace Restarter
 
         private static void StartBFME1Launcher(string argument)
         {
+            Console.WriteLine($"Running {MethodBase.GetCurrentMethod()?.Name}");
             try
             {
                 Thread.Sleep(1000);
@@ -123,6 +127,7 @@ namespace Restarter
 
         private static void StartBFME2Launcher(string argument)
         {
+            Console.WriteLine($"Running {MethodBase.GetCurrentMethod()?.Name}");
             try
             {
                 Thread.Sleep(1000);
@@ -141,6 +146,7 @@ namespace Restarter
 
         private static void StartBFME25Launcher(string argument)
         {
+            Console.WriteLine($"Running {MethodBase.GetCurrentMethod()?.Name}");
             try
             {
                 Thread.Sleep(1000);
@@ -166,6 +172,7 @@ namespace Restarter
         /// <returns>Returns the selected Game Launcher as an integer value</returns>
         private static int GetLastSelectedGameLauncher()
         {
+            Console.WriteLine($"Running {MethodBase.GetCurrentMethod()?.Name}");
             try
             {
                 if (File.Exists(Path.Combine(programPath, ConstStrings.C_LAUNCHERSELECTEDINFOFILE)))
@@ -183,6 +190,7 @@ namespace Restarter
 
         private static void SetLastSelectedGameLauncher(int selectedGame)
         {
+            Console.WriteLine($"Running {MethodBase.GetCurrentMethod()?.Name}");
             try
             {
                 File.WriteAllText(Path.Combine(programPath, ConstStrings.C_LAUNCHERSELECTEDINFOFILE), selectedGame.ToString());
