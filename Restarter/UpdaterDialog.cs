@@ -1,6 +1,8 @@
 ﻿using Helper;
 using AutoUpdaterDotNET;
 using System.Net;
+using System.Net.Mime;
+using System.Reflection;
 
 namespace Restarter
 {
@@ -8,12 +10,15 @@ namespace Restarter
     {
         public UpdaterDialog()
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             InitializeComponent();
             BackgroundImage = Helper.Properties.Resources.UpdaterSplash;
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         private void UpdaterDialog_Shown(object sender, EventArgs e)
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
                 AutoUpdater.Start("https://ravo92.github.io/LauncherUpdater_Test.xml");
@@ -38,10 +43,12 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             if (args.Error == null)
             {
                 if (args.IsUpdateAvailable)
@@ -82,6 +89,7 @@ namespace Restarter
                         MessageBoxIcon.Error);
                 }
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
     }
 }
