@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Text;
 using Helper;
+using System.IO;
 
 namespace Restarter
 {
@@ -12,6 +13,8 @@ namespace Restarter
 
         static void Main(string[] args)
         {
+            File.AppendAllText("log.txt", "Main started" + Environment.NewLine);
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
                 if (_mutex.WaitOne(TimeSpan.Zero, true))
@@ -23,6 +26,7 @@ namespace Restarter
                 }
                 else
                 {
+                    File.AppendAllText("log.txt", $"aborting {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
                     Application.Exit();
                 }
 
@@ -101,10 +105,12 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         private static void StartBFME1Launcher(string argument)
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
                 Thread.Sleep(1000);
@@ -119,10 +125,12 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         private static void StartBFME2Launcher(string argument)
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
                 Thread.Sleep(1000);
@@ -137,10 +145,12 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         private static void StartBFME25Launcher(string argument)
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
                 Thread.Sleep(1000);
@@ -155,6 +165,7 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
 
         /// <summary>
@@ -166,6 +177,7 @@ namespace Restarter
         /// <returns>Returns the selected Game Launcher as an integer value</returns>
         private static int GetLastSelectedGameLauncher()
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
                 if (File.Exists(Path.Combine(programPath, ConstStrings.C_LAUNCHERSELECTEDINFOFILE)))
@@ -178,11 +190,13 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             return 1;
         }
 
         private static void SetLastSelectedGameLauncher(int selectedGame)
         {
+            File.AppendAllText("log.txt", $"Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
             try
             {
                 File.WriteAllText(Path.Combine(programPath, ConstStrings.C_LAUNCHERSELECTEDINFOFILE), selectedGame.ToString());
@@ -191,6 +205,7 @@ namespace Restarter
             {
                 LogHelper.LoggerRestarter.Error(ex, "");
             }
+            File.AppendAllText("log.txt", $"Done Running {MethodBase.GetCurrentMethod()?.Name}" + Environment.NewLine);
         }
     }
 }
