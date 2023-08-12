@@ -32,7 +32,7 @@ namespace Restarter
                 AutoUpdater.HttpUserAgent = "BFME Patch 2.22 Launcher Updater";
                 AutoUpdater.AppTitle = "Patch 2.22 Launcher";
                 AutoUpdater.RunUpdateAsAdmin = true;
-                AutoUpdater.DownloadPath = Path.Combine(MediaTypeNames.Application.StartupPath, ConstStrings.C_DOWNLOADFOLDER_NAME_LAUNCHER);
+                AutoUpdater.DownloadPath = Path.Combine(Application.StartupPath, ConstStrings.C_DOWNLOADFOLDER_NAME_LAUNCHER);
                 AutoUpdater.ClearAppDirectory = false;
                 AutoUpdater.ReportErrors = false;
 
